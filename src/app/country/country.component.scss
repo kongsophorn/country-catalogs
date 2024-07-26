@@ -1,0 +1,47 @@
+
+
+.hvr:hover{
+    background-color: rgb(173, 201, 192);
+    color:black;
+}
+.flag-png{
+    width: 40px;
+    height: 30px;
+}
+table {
+    width: 100%;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1);
+  }
+  .material{
+    height: 500px;
+  }
+  .search{
+    height: 20px;
+    width: 200;
+  }
+
+  .copy-cursor {
+    cursor: copy;
+  }
+  .icon{
+    color: blue;
+    cursor: pointer;
+  }
+  .headers{
+    color: blue;
+  }
+
+.custom-table ::ng-deep .datatable-row-group {
+  border-bottom: 1px solid #ccc;
+}
+
+.custom-table ::ng-deep .datatable-header {
+  border-bottom: 1px solid #ccc;
+}
+
+.custom-table ::ng-deep .datatable-footer {
+  border-top: 1px solid #ccc;
+}

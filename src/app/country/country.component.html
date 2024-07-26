@@ -1,0 +1,102 @@
+
+
+<div class="header container w-60 ">
+  <div class="conten d-flex">
+    <h3 class=" flex-fill "> Country Catalogs</h3>
+
+  </div>
+
+  <div class="card">
+    <div class="card-body pb-2 pt-2 table-responsive" style="height: 700px; overflow-y: auto;">
+ 
+      <div class="form-group mb-2">
+        <input class="form-control"type="text"(input)="filterByName($event)"placeholder="Search by name">
+      </div>
+
+      <ngx-datatable class="material custom-table"
+        [rows]="rows | paginate: { itemsPerPage: pageSize, currentPage: currentPage }" 
+        [count]="rows?.length"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50" 
+        rowHeight="auto" 
+        [scrollbarV]="true"
+        [virtualization]="false">
+
+      <ngx-datatable-column [name]="'No'" [sortable]="false" [maxWidth]="65" class="headers">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span>
+                {{ ((rows?.paginate?.limit) * (rows?.paginate?.offset)) + rowIndex + 1 }}
+            </span>
+        </ng-template>
+    </ngx-datatable-column>
+
+      <ngx-datatable-column prop="idd" [name]="'Calling Code'" [sortable]="false" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{getCallingCodes(value)}}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column prop="flag" [name]="'Flag'" [sortable]="true"  >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <span >
+              {{ value }}
+            </span>
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column prop="name" [name]="'Country Name'"[sortable]="true">
+        <ng-template let-row="row"let-value="value" ngx-datatable-cell-template>
+          <span class="copy-cursor" (click)="onClickView(row)" (sort)="sortBy('$event')">
+            {{ value.official }}
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column prop="name" [name]="'Native Name'" [sortable]="false" >
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <!-- {{value?.nativeName?.eng?.common}} -->
+            {{value?.nativeName?.eng?.common ? value?.nativeName?.eng?.common  : value?.nativeName?.gsw?.common}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column prop="cca2" [name]="'CCA2'" [sortable]="false" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column prop="cca3" [name]="'CCA3'" [sortable]="false" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column prop="altSpellings" [name]="'Alt Spellings'" [sortable]="false" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+          </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [name]="'Action'"  [maxWidth]="100" [sortable]="false" >
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template >
+           
+             <a mat-icon-button (click)="onClickView(row)">
+                 <mat-icon class="icon">more_vert</mat-icon>
+             </a>
+              
+        </ng-template>
+    </ngx-datatable-column>
+
+    </ngx-datatable>
+
+
+      <div class="pagination mb-2 mt-2">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>
+

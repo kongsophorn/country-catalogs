@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@swimlane/ngx-datatable/index.css";
+@import '../node_modules/@swimlane/ngx-datatable/themes/material.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container-full{
+    background-color:azure;
+    width: 100%;
+    
+}
+
+.transparent-dialog .mat-dialog-container {
+    background: transparent;
+    box-shadow: none;
+  }
+  

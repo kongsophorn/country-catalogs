@@ -1,0 +1,179 @@
+<div  class="dialog-content-wrapper">
+    <mat-toolbar class="dialog-header">
+        <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Country Detail</span>
+            <button  class="icon-colse" mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon class="icon">close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div fxLayout="row" class="dialog-content" fxLayoutAlign="start start">
+       
+        <div fxLayout="column" class="p-24" fxFlex="100" fxFlex>
+    
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Country Name</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.name?.official}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Country Native Name</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                   
+                    {{data?.name?.nativeName?.eng?.common ? data?.name?.nativeName?.eng?.common  : data?.name?.nativeName?.gsw?.common}}
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Capital</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.capital}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Country Calling Code</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                   {{getCallingCodes(data.idd)}}
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>2 character Country Code</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.cca2}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>3 character Country Code</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.cca3}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Alt Spellings</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.altSpellings}}</span>
+                </div>
+            </div>
+            
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Region</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.region}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Currencies</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{data?.currencies?.SHP?.name ? data?.currencies?.SHP?.name : 'N/A' }}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Continents</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.continents}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Latlng</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.latlng}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex >
+                    <span><b>Maps Link</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8"  >
+                    <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                    <span>{{ data?.maps?.googleMaps}}</span>
+                </div>
+            </div>
+
+            <div class="mb-16" fxLayout="row" fxFlex="100" fxFlex>
+                <div fxLayout="row" fxFlex="35" fxFlex>
+                  <span><b>Flag</b></span>
+                </div>
+                <div fxLayout="row-reverse" fxFlex="5" class="pr-8">
+                  <span><b> : </b></span>
+                </div>
+                <div fxLayout="row" fxFlex="60" class="left">
+                  
+                  <!-- <span style="max-width: 400px; height: auto;" >{{ data?.flags?.png}}</span> -->
+                   <img [src]="data?.flags?.png" style="max-width: 100px; height: auto;" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+ 
+
+</div>
