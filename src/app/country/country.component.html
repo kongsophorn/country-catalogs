@@ -3,7 +3,6 @@
 <div class="header container w-60 ">
   <div class="conten d-flex">
     <h3 class=" flex-fill "> Country Catalogs</h3>
-
   </div>
 
   <div class="card">
@@ -23,20 +22,23 @@
         [scrollbarV]="true"
         [virtualization]="false">
 
+      <!-- row limit -->
       <ngx-datatable-column [name]="'No'" [sortable]="false" [maxWidth]="65" class="headers">
         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>
                 {{ ((rows?.paginate?.limit) * (rows?.paginate?.offset)) + rowIndex + 1 }}
             </span>
         </ng-template>
-    </ngx-datatable-column>
+      </ngx-datatable-column>
 
+      <!-- Calling Country Code -->
       <ngx-datatable-column prop="idd" [name]="'Calling Code'" [sortable]="false" >
           <ng-template let-value="value" ngx-datatable-cell-template>
               {{getCallingCodes(value)}}
           </ng-template>
       </ngx-datatable-column>
 
+      <!-- Flag -->
       <ngx-datatable-column prop="flag" [name]="'Flag'" [sortable]="true"  >
           <ng-template let-value="value" ngx-datatable-cell-template>
             <span >
@@ -45,6 +47,7 @@
           </ng-template>
       </ngx-datatable-column>
 
+      <!-- Country Name -->
       <ngx-datatable-column prop="name" [name]="'Country Name'"[sortable]="true">
         <ng-template let-row="row"let-value="value" ngx-datatable-cell-template>
           <span class="copy-cursor" (click)="onClickView(row)" (sort)="sortBy('$event')">
@@ -53,32 +56,34 @@
         </ng-template>
       </ngx-datatable-column>
 
-
-      <ngx-datatable-column prop="name" [name]="'Native Name'" [sortable]="false" >
+      <!-- Native Name -->
+      <ngx-datatable-column prop="name" [name]="'Native Country Name'" [sortable]="false" >
         <ng-template let-value="value" ngx-datatable-cell-template>
-            <!-- {{value?.nativeName?.eng?.common}} -->
             {{value?.nativeName?.eng?.common ? value?.nativeName?.eng?.common  : value?.nativeName?.gsw?.common}}
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column prop="cca2" [name]="'CCA2'" [sortable]="false" >
+      <!-- character Country Code2  -->
+      <ngx-datatable-column prop="cca2" [name]="'2 Character Country Code'" [sortable]="false" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+          </ng-template>
+      </ngx-datatable-column>
+      <!-- character Country Code2  -->
+      <ngx-datatable-column prop="cca3" [name]="'3 Character Country Code'" [sortable]="false" >
           <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}
           </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column prop="cca3" [name]="'CCA3'" [sortable]="false" >
+      <!-- Alternative Country Name -->
+      <ngx-datatable-column prop="altSpellings" [name]="'Alternative Country Name'" [sortable]="false" >
           <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}
           </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column prop="altSpellings" [name]="'Alt Spellings'" [sortable]="false" >
-          <ng-template let-value="value" ngx-datatable-cell-template>
-              {{ value }}
-          </ng-template>
-      </ngx-datatable-column>
-
+      <!-- Action -->
       <ngx-datatable-column [name]="'Action'"  [maxWidth]="100" [sortable]="false" >
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template >
            
@@ -87,9 +92,9 @@
              </a>
               
         </ng-template>
-    </ngx-datatable-column>
+      </ngx-datatable-column>
 
-    </ngx-datatable>
+      </ngx-datatable>
 
 
       <div class="pagination mb-2 mt-2">
