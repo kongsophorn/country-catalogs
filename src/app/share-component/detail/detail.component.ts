@@ -23,9 +23,8 @@ export class FeedbackDetailComponent implements OnInit, OnDestroy {
   
     ngOnInit(): void {
         this.data = this._data.param;
-        console.log("data", this.data);
     }
-  
+   
     public getCallingCodes(idd: any): string {
       if (idd && idd.suffixes) {
         const d = idd.suffixes.map((suffix: any) => `${idd.root}${suffix}`).join(', ');

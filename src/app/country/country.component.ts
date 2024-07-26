@@ -42,22 +42,21 @@ export class CountryComponent implements OnInit, OnDestroy {
   public _subscribeGetRecipeError!: Subscription;
   public _subscribeDeleteRecipe!: Subscription;
   public _subscribeDeleteRecipeError!: Subscription;
- 
   public nativeName: any []=[];
   public altSpellings: any []=[];
   public idd: any;
-  searchForm!: FormGroup;
+  public searchForm!: FormGroup;
   private recipeService= inject(CountryService);
-  contriesForm!: UntypedFormGroup;
-  rows: any;
+  public contriesForm!: UntypedFormGroup;
+  public rows: any;
   private dialogRef: any;
   private limitValue = 10;
   private searchValue: string = ''
-  fuse!: Fuse<any>;
-  filteredArray: any[] = [];
-  
-  countries: any[] = [];
-  officalNativeName: any;
+  public fuse!: Fuse<any>;
+  public filteredArray: any[] = [];
+  public countries: any[] = [];
+  public officalNativeName: any;
+
   private paramsGlobal: any = {
     limit: 10,
     offset: 0,
@@ -65,10 +64,10 @@ export class CountryComponent implements OnInit, OnDestroy {
    
   };
   public backUpRows: any;
-  currentPage = 1;
-  pageSize =25;
-  sortColumn = 'name';
-  sortOrder: string = 'asc';
+  public currentPage = 1;
+  public pageSize =25;
+  public sortColumn = 'name';
+  public sortOrder: string = 'asc';
   constructor(
               private _router: Router,
               private store: Store<fromApp.AppState>,
@@ -84,7 +83,9 @@ export class CountryComponent implements OnInit, OnDestroy {
   }
 
 
-
+    /**
+     * function getCountries
+     */
   private getCountries(payload: any): void {
     this.store.dispatch(
        new CountriesActions.GetCountries(payload)
@@ -105,7 +106,9 @@ export class CountryComponent implements OnInit, OnDestroy {
   }); 
   }
 
-
+     /**
+     * function onClickView
+     */
   public onClickView(key: any): void {
     this.dialogRef = this._dialogs.open(FeedbackDetailComponent, {
         panelClass: 'myapp-no-padding-dialog',
@@ -120,6 +123,9 @@ export class CountryComponent implements OnInit, OnDestroy {
     });
   }
 
+    /**
+     * function getCallingCodes
+     */
   public getCallingCodes(idd: any): string {
     if (idd && idd.suffixes) {
       const d = idd.suffixes.map((suffix: any) => `${idd.root}${suffix}`).join(', ');
@@ -128,6 +134,9 @@ export class CountryComponent implements OnInit, OnDestroy {
     return ''; 
   }
 
+    /**
+     * function filterByName
+     */
   public filterByName(event: any) {
     
     const filter = event.target.value.toLowerCase();
@@ -139,12 +148,18 @@ export class CountryComponent implements OnInit, OnDestroy {
   
   }
 
-  sortBy(event: any) {
+    /**
+     * function sortBy
+     */
+  public sortBy(event: any) {
     const column = event.column.prop;
     this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     this.rows = this.sortData(this.rows, column, this.sortOrder);
   }
 
+    /**
+     * function sortData
+     */
   private sortData(data: any[], column: string, order: string): any[] {
     return data.sort((a: any, b: any) => {
       const valueA = this.getNestedValue(a, column);
@@ -158,6 +173,9 @@ export class CountryComponent implements OnInit, OnDestroy {
     });
   }
 
+    /**
+     * function getNestedValue
+     */
   private getNestedValue(obj: any, path: string): string {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj) || '';
   }

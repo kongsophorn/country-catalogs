@@ -60,7 +60,7 @@ export function fromCountryReducer(state = initialState, action: CountriesAction
     }
 
 
-/*************************
+/************************
  * SELECTORS
  ************************/
 
